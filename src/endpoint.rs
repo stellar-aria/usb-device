@@ -173,6 +173,11 @@ impl<B: UsbBus, D: EndpointDirection> Endpoint<'_, B, D> {
     pub fn unstall(&self) {
         self.bus().set_stalled(self.address, false);
     }
+
+    /// Checks the STALL condition of the endpoint.
+    pub fn is_stalled(&self) -> bool {
+        self.bus().is_stalled(self.address)
+    }
 }
 
 impl<B: UsbBus> Endpoint<'_, B, In> {
